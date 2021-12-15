@@ -2,35 +2,56 @@ import { useEffect, useState } from 'react'
 
 const pinkRGB = `rgb(236, 72, 153)`
 
+const initialCount = 0
+
+function countReducer(count, action) {
+  switch (action.type) {
+    case 'increment': {
+      return count + 1
+    }
+    case 'decrement': {
+      return count - 1
+    }
+    case 'reset': {
+      return initialCount
+    }
+    default: {
+      throw Error(`Unknown action: ${action.type}`)
+    }
+  }
+}
+
 export default function Counter() {
-  const [count, setCount] = useState(0)
-  const [currentColor, setCurrentColor] = useState(pinkRGB)
+  // const [count, setCount] = useState(0)
+  // const [currentColor, setCurrentColor] = useState(pinkRGB)
 
-  useEffect(() => {
-    if (count === 0) {
-      setCurrentColor(pinkRGB)
-    }
+  // useEffect(() => {
+  //   if (count === 0) {
+  //     setCurrentColor(pinkRGB)
+  //   }
 
-    if (count > 0) {
-      setCurrentColor(`rgb(52, 211, 153)`)
-    }
+  //   if (count > 0) {
+  //     setCurrentColor(`rgb(52, 211, 153)`)
+  //   }
 
-    if (count < 0) {
-      setCurrentColor(`rgb(239, 68, 68)`)
-    }
-  }, [count])
+  //   if (count < 0) {
+  //     setCurrentColor(`rgb(239, 68, 68)`)
+  //   }
+  // }, [count])
 
-  const increment = () => {
-    setCount((prevState) => prevState + 1)
-  }
+  // const increment = () => {
+  //   setCount((prevState) => prevState + 1)
+  // }
 
-  const decrement = () => {
-    setCount((prevState) => prevState - 1)
-  }
+  // const decrement = () => {
+  //   setCount((prevState) => prevState - 1)
+  // }
 
-  const reset = () => {
-    setCount(0)
-  }
+  // const reset = () => {
+  //   setCount(0)
+  // }
+
+
 
   return (
     <main className="bg-black bg-opacity-90 min-h-screen flex flex-col items-center justify-center text-4xl text-pink-500">
