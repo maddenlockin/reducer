@@ -25,19 +25,22 @@ export default function Counter() {
   const [count, dispatch] = useReducer(countReducer, initialCount)
   const [currentColor, setCurrentColor] = useState(pinkRGB)
 
-  const handleIncrementCount = () => {
+  const handleIncrementCount = (increment) => {
     dispatch({
-      type: 'increment'
+      type: 'increment',
+      increment
     })
   }
-  const handleDecrementCount = () => {
+  const handleDecrementCount = (decrement) => {
     dispatch({
       type: 'decrement',
+      decrement
     })
   }
-  const handleResetCount = () => {
+  const handleResetCount = (reset) => {
     dispatch({
       type: 'reset',
+      reset
     })
   }
 
@@ -55,19 +58,6 @@ export default function Counter() {
     }
   }, [count])
 
-  // const increment = () => {
-  //   setCount((prevState) => prevState + 1)
-  // }
-
-  // const decrement = () => {
-  //   setCount((prevState) => prevState - 1)
-  // }
-
-  // const reset = () => {
-  //   setCount(0)
-  // }
-
-
 
   return (
     <main className="bg-black bg-opacity-90 min-h-screen flex flex-col items-center justify-center text-4xl text-pink-500">
@@ -78,7 +68,7 @@ export default function Counter() {
         <button
           className="text-green-400 border-2 border-green-400 p-3"
           type="button"
-          onClick={increment}
+          onClick={handleIncrementCount}
           aria-label="increment"
         >
           Increment
@@ -86,7 +76,7 @@ export default function Counter() {
         <button
           className="text-red-500 border-2 border-red-500 p-2"
           type="button"
-          onClick={decrement}
+          onClick={handleDecrementCount}
           aria-label="decrement"
         >
           Decrement
@@ -95,7 +85,7 @@ export default function Counter() {
           className="text-pink-500 border-2 border-pink-500 p-2"
           type="button"
           aria-label="reset"
-          onClick={reset}
+          onClick={handleResetCount}
         >
           Reset
         </button>
